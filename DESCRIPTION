@@ -1,0 +1,5 @@
+Type: project
+Description: NOAA tech memo template. Add the packages used.
+Depends:
+    here,
+    ggplot2

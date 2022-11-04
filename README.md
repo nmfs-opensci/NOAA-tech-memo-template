@@ -1,6 +1,26 @@
 # NOAA Quarto Tech Memo
 
-This is a template repo to create a pdf with a NOAA tech memo format.
+This is a template repo to create report with a NOAA tech memo format in pdf, html, or docx format.
+
+## renv
+
+This template uses the {renv} package to create an environment with a set of R packages and R version. This way when you come back to the code later, you can recreate the environment even if R has changed or packages have been upgraded. This ensures reproducibility.
+
+Set-up
+```
+install.packages("renv")
+renv::init()
+```
+Install and upgrade packages as needed. To update the environment files run
+```
+renv::snapshot()
+```
+To later reproduce the environemnt at a later time on on another machine use:
+```
+renv::restore()
+```
+
+If you use Python with your project, read how to do the same thing with venv in the [Quarto documentation](https://quarto.org/docs/projects/virtual-environments.html).
 
 <hr>
 
