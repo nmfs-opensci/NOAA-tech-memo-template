@@ -23,7 +23,7 @@ format:
       title-style: "plain"
       title-fontsize: 30
       title-fontstyle: ["bfseries"]
-      title-color: "blue"
+      title-color: "nmfsblue1"
       title-align: "left"
       author-fontsize: 20
       vrule-width: 0pt
@@ -75,6 +75,7 @@ format:
       text: |
         \usepackage[default]{opensans}
         \fontseries{lc}\selectfont
-#        \usepackage[default,oldstyle,scale=0.95]{opensans}
         \definecolor{nmfsblue1}{HTML}{00467f}
         \definecolor{nmfsblue2}{HTML}{007eb2}
+#        \usepackage[default,oldstyle,scale=0.95]{opensans}
+
