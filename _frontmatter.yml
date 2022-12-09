@@ -55,18 +55,18 @@ format:
       title-left: 2.3in
       title-width: 5in
       title-bottom: 7in
-      title-color: "blue"
+      title-color: "nmfsblue1"
       author-fontsize: 20
       author-left: 2.3in
       author-width: 5in
       author-bottom: 5in
       footer-style: "colorbox"
-      footer-colorbox-fill: "blue"
+      footer-colorbox-fill: "nmfsblue1"
       footer-fontsize: 8
       footer-left: 6in
       footer-width: 2.5in
       date-style: "colorbox"
-      date-colorbox-fill: "blue"
+      date-colorbox-fill: "nmfsblue1"
       date-fontsize: 20
       date-left: 6in
       date-width: 2.5in
@@ -76,3 +76,5 @@ format:
         \usepackage[default]{opensans}
         \fontseries{lc}\selectfont
 #        \usepackage[default,oldstyle,scale=0.95]{opensans}
+        \definecolor{nmfsblue1}{HTML}{00467f}
+        \definecolor{nmfsblue2}{HTML}{007eb2}
