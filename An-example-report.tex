@@ -72,7 +72,34 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{longtable}
 \usepackage[default]{opensans}
 \fontseries{lc}\selectfont
 \definecolor{nmfsblue1}{HTML}{00467f}
@@ -456,7 +483,7 @@ Science,  Kylmäniementie 79, 98120, KEMIJÄRVI, Finland
 \setcounter{page}{1}
 \end{frontmatter}
 
-%%%%% end titlepage extension code\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, enhanced, frame hidden, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, interior hidden, sharp corners]}{\end{tcolorbox}}\fi
+%%%%% end titlepage extension code\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, enhanced, frame hidden, interior hidden, sharp corners]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -476,6 +503,229 @@ Science,  Kylmäniementie 79, 98120, KEMIJÄRVI, Finland
 
 EE Holmes, 2022. Quarto Report Template. Northwest Fisheries Science
 Center.
+
+\bookmarksetup{startatroot}
+
+\hypertarget{a-chapter}{%
+\chapter{A chapter}\label{a-chapter}}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Clark (1993)
+vitae ante quis dui egestas fringilla ac vitae justo (Ansley and Davis
+1981; Collins et al. 1996; Deuel and Clark 1968) . Pellentesque quis
+magna vel odio malesuada rutrum a volutpat nisl. Aliquam fermentum, urna
+eget tristique mattis, augue augue tristique ipsum, eget finibus nunc
+eros non nisi. Phasellus mattis hendrerit sapien, quis accumsan dui
+pretium eget. Nunc eleifend laoreet urna a luctus. Nulla vel sapien in
+nulla gravida tempus sit amet a metus. Vivamus porta condimentum tempus.
+Maecenas rhoncus elit id ultricies scelerisque. In gravida urna in
+ligula fringilla euismod. Curabitur efficitur porta libero ac fermentum.
+Cras fringilla et libero at posuere. Curabitur sodales dapibus elit a
+convallis.
+
+Morbi iaculis eget augue eget facilisis. Etiam non orci dignissim,
+efficitur purus viverra, pellentesque neque. Aliquam ornare, magna ut
+dictum mollis, nunc lorem iaculis nibh, eu consequat lectus urna euismod
+tortor. Etiam ut felis nisl. Nunc quis euismod felis. Vestibulum gravida
+nisi mi, quis mollis velit ullamcorper non. Aliquam tempus fringilla
+bibendum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+viverra nulla elementum libero mollis, quis cursus velit sagittis.
+
+\hypertarget{general-location}{%
+\section{General location}\label{general-location}}
+
+Morbi iaculis eget augue eget facilisis. Etiam non orci dignissim,
+efficitur purus viverra, pellentesque neque. Aliquam ornare, magna ut
+dictum mollis, nunc lorem iaculis nibh, eu consequat lectus urna euismod
+tortor.
+
+\begin{figure}
+
+{\centering \includegraphics[width=4.48in,height=\textheight]{text/../images/fig-map.png}
+
+}
+
+\caption{\label{fig-map}Morbi iaculis eget augue eget facilisis. Etiam
+non orci dignissim, efficitur purus viverra, pellentesque neque. Aliquam
+ornare, magna ut dictum mollis.}
+
+\end{figure}
+
+\hypertarget{recent-trends}{%
+\section{Recent trends}\label{recent-trends}}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae
+ante quis dui egestas fringilla ac vitae justo. Pellentesque quis magna
+vel odio malesuada rutrum a volutpat nisl. Aliquam fermentum, urna eget
+tristique mattis, augue augue tristique ipsum, eget finibus nunc eros
+non nisi. Phasellus mattis hendrerit sapien, quis accumsan dui pretium
+eget. Nunc eleifend laoreet urna a luctus. Nulla vel sapien in nulla
+gravida tempus sit amet a metus. Vivamus porta condimentum tempus.
+Maecenas rhoncus elit id ultricies scelerisque. In gravida urna in
+ligula fringilla euismod. Curabitur efficitur porta libero ac fermentum.
+Cras fringilla et libero at posuere. Curabitur sodales dapibus elit a
+convallis.
+
+Morbi iaculis eget augue eget facilisis. Etiam non orci dignissim,
+efficitur purus viverra, pellentesque neque. Aliquam ornare, magna ut
+dictum mollis, nunc lorem iaculis nibh, eu consequat lectus urna euismod
+tortor. Etiam ut felis nisl. Nunc quis euismod felis. Vestibulum gravida
+nisi mi, quis mollis velit ullamcorper non. Aliquam tempus fringilla
+bibendum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+viverra nulla elementum libero mollis, quis cursus velit sagittis.
+
+\begin{figure}
+
+{\centering \includegraphics{text/Chapter1_files/figure-pdf/fig-CRchum-status-1.pdf}
+
+}
+
+\caption{\label{fig-CRchum-status}Columbia River Chum. Log spawner count
+trends.}
+
+\end{figure}
+
+\hypertarget{population-raw-data}{%
+\section{Population raw data}\label{population-raw-data}}
+
+The raw data can be found in Table~\ref{tbl-CRchum-rawdata}. Nunc quis
+euismod felis. Vestibulum gravida nisi mi, quis mollis velit ullamcorper
+non. Aliquam tempus fringilla bibendum. Lorem ipsum dolor sit amet,
+consectetur adipiscing elit. Fusce viverra nulla elementum libero
+mollis, quis cursus velit sagittis.
+
+\hypertarget{tbl-CRchum-rawdata}{}
+\begin{longtable}{rr}
+\caption{\label{tbl-CRchum-rawdata}Columbia River Chum. Raw Data. }\tabularnewline
+
+\toprule
+YEAR & NUMBER\_OF\_SPAWNERS \\ 
+\midrule
+\multicolumn{2}{l}{Up. Gorge Tribs.} \\ 
+\midrule
+1990 & 25 \\ 
+1991 & 5 \\ 
+1992 & 39 \\ 
+1993 & 17 \\ 
+1994 & 26 \\ 
+1995 & 30 \\ 
+1996 & 21 \\ 
+1997 & 46 \\ 
+1998 & 118 \\ 
+1999 & 43 \\ 
+\midrule
+\multicolumn{2}{l}{Low. Gorge Tribs.} \\ 
+\midrule
+2000 & 1265 \\ 
+\midrule
+\multicolumn{2}{l}{Grays \& Chinook Rs.} \\ 
+\midrule
+2001 & 4742 \\ 
+2002 & 11713 \\ 
+2003 & 16669 \\ 
+2004 & 13716 \\ 
+2005 & 4204 \\ 
+2006 & 6605 \\ 
+2007 & 3999 \\ 
+2008 & 2608 \\ 
+2009 & 2876 \\ 
+2010 & 6380 \\ 
+2011 & 10809 \\ 
+2012 & 8010 \\ 
+2013 & 5134 \\ 
+2014 & 4792 \\ 
+2015 & 11580 \\ 
+\bottomrule
+\end{longtable}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{conclusion}{%
+\chapter{Conclusion}\label{conclusion}}
+
+We want to reference the Interior Columbia Upper Columbia Entiat
+population Table~\ref{tbl-CRchum-rawdata}. It is in Lorem ipsum dolor
+sit amet, consectetur adipiscing elit. Nam commodo sit amet nibh non
+molestie. Maecenas hendrerit nisl velit, a condimentum enim lobortis sit
+amet. Ut vitae nunc sed mauris condimentum fermentum. Mauris
+pellentesque nec neque id elementum. Suspendisse a quam aliquam,
+facilisis urna venenatis, malesuada diam. Pellentesque in fringilla
+orci. Cras sed purus urna. Ut pharetra enim ut ligula egestas mattis. I
+need to reference the work of Hardy (1978).
+
+Phasellus non diam posuere, laoreet velit sed, egestas felis. Etiam eget
+neque in tellus lacinia tincidunt. Pellentesque scelerisque odio velit,
+nec fringilla nibh iaculis non. Aenean sit amet nulla ipsum. Cras felis
+lacus, pulvinar ac nisi et, convallis pulvinar turpis. Morbi non nibh
+lacus. Morbi vitae lorem massa. Sed ut turpis vel felis posuere commodo
+lacinia ac mi. Donec finibus lectus sit amet elit finibus, vitae rhoncus
+ligula tincidunt. Phasellus vitae blandit lacus. Integer sed nisl
+fermentum, pulvinar mauris in, posuere enim. Proin sit amet semper urna.
+Vivamus aliquet rutrum diam ac luctus.
+
+Quisque in nibh sit amet nunc mollis porttitor quis et mauris. Sed non
+condimentum leo, ac condimentum est. Duis ac venenatis nulla, et aliquet
+elit. Suspendisse potenti. Duis mollis dui at semper luctus. Maecenas
+euismod finibus condimentum. Fusce vitae gravida massa. Mauris metus
+est, pretium non semper vel, dictum vel augue.
+
+Curabitur tempus, leo quis volutpat rhoncus, turpis elit vehicula dolor,
+id tincidunt augue nunc at enim. In vel enim mattis, varius orci at,
+tempus ante. Morbi massa elit, pharetra ac libero at, porta tempus quam.
+Ut fringilla, tortor ac tristique euismod, magna felis vestibulum
+turpis, quis congue mauris leo nec felis. Aliquam viverra et nibh ut
+blandit. Praesent sed luctus odio. Pellentesque finibus velit dolor.
+Morbi ac pulvinar ex, id dapibus eros. Cras interdum arcu viverra auctor
+tristique. Suspendisse venenatis volutpat ultricies.
+
+Donec bibendum pharetra arcu vitae porttitor. Morbi ac quam nunc. Ut
+cursus dolor a mauris aliquet vulputate. Morbi elementum ullamcorper
+augue, et tincidunt libero facilisis posuere. Nam congue velit non elit
+sollicitudin aliquet. Donec lobortis nunc ligula, id sollicitudin erat
+rhoncus cursus. Ut egestas orci libero, eu malesuada ex sollicitudin
+sed. Sed ornare nunc eget massa scelerisque, nec egestas nulla commodo.
+Pellentesque efficitur accumsan ullamcorper. Nulla facilisi. Maecenas
+tristique luctus malesuada. Phasellus id enim maximus, tempus tellus eu,
+dignissim sapien. Integer et mauris in lectus condimentum pellentesque
+non a felis.
+
+\bookmarksetup{startatroot}
+
+\hypertarget{references}{%
+\chapter*{References}\label{references}}
+\addcontentsline{toc}{chapter}{References}
+
+\markboth{References}{References}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-ansley1981}{}}%
+Ansley, H. L. H., and C. D. Davis. 1981. {``Migration and Standing Stock
+of Fishes Associated with Artificial and Natural Reefs on Georgia{'}s
+Outer Continental Shelf.''} Brunswick, Georgia, USA.
+
+\leavevmode\vadjust pre{\hypertarget{ref-clark1993}{}}%
+Clark, W. G. 1993. {``The Effect of Recruitment Variability on the
+Choice of a Target Level of Spawning Biomass Per Recruit.''} In, 233246.
+Alaska Sea Grant College Program
+AK{\textendash}SG{\textendash}93{\textendash}02.
+
+\leavevmode\vadjust pre{\hypertarget{ref-collins1996}{}}%
+Collins, M. R., S. B. Van Sant, D. J. Schmidt, and G. R. Sedberry. 1996.
+{``Age Validation, Movements, and Growth Rates of Tagged Gag
+(Mycteroperca Microlepis), Black Sea Bass (Centropristis Striata) and
+Red Porgy (Pagrus Pagrus).''} In, edited by F. Arrequin-Sanchez, J. L.
+Munro, M. C. Balgos, and D. Pauly, 161--65. Makati City, Philippines:
+ICLARM (International Center for Living Aquatic Resources Management).
+
+\leavevmode\vadjust pre{\hypertarget{ref-deuel1968}{}}%
+Deuel, D. G., and J. R. Clark. 1968. {``The 1965 Salt-Water Angling
+Survey.''}
+
+\leavevmode\vadjust pre{\hypertarget{ref-hardy1978}{}}%
+Hardy, J. D., Jr. 1978. {``Development of Fishes of the Mid-Atlantic
+Bight. Vol. III. Aphredoderidae Through Rachycentridae.''}
+
+\end{CSLReferences}
 
 
 \backmatter

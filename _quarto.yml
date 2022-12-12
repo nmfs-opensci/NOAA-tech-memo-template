@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 book:
-  title: An example report
+  title: An example tech memo
   subtitle: The subtitle
   date: January 2023
   downloads: [pdf, docx]
@@ -36,9 +36,9 @@ book:
         address: R Tradição 35, Portugal 2950-726
   chapters:
     - index.qmd
-#    - text/Chapter1.qmd
-#    - text/conclusion.qmd
-#    - text/references.qmd
+    - text/Chapter1.qmd
+    - text/conclusion.qmd
+    - text/references.qmd
 
   site-url: https://nmfs-opensci.github.io/NOAA-tech-memo-template/
   repo-url: https://github.com/nmfs-opensci/NOAA-tech-memo-template

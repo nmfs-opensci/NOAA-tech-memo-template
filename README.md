@@ -2,26 +2,18 @@
 
 This is a template repo to create report with a NOAA tech memo format in pdf, html, or docx format.
 
-## renv
+## R package dependencies
 
-This template uses the {renv} package to create an environment with a set of R packages and R version. This way when you come back to the code later, you can recreate the environment even if R has changed or packages have been upgraded. This ensures reproducibility.
+The package dependencies are defined in the DESCRIPTION file. You can check if you have all the required dependencies and install if necessary, via 
+```
+devtools::install_deps()
+```
+You run this from the base level, i.e. your working directory is where the DESCRIPTION file is. Install the {devtools} package first if you don't have it installed.
 
-Set-up
+As you work on your project, add any packages your documents require to the DESCRIPTION file. That way users can quickly install dependencies. A easy way to analyze your project code and find any dependencies is using the {renv} package. You don't need to use {renv}; you can just use it's utility for analyzing all your code. It starts at the base directory and works downward.
 ```
-install.packages("renv")
-renv::init()
+renv::dependencies()
 ```
-Install and upgrade packages as needed. To update the environment files run
-```
-renv::snapshot()
-```
-To later reproduce the environemnt at a later time on on another machine use:
-```
-renv::restore()
-```
-
-If you use Python with your project, read how to do the same thing with venv in the [Quarto documentation](https://quarto.org/docs/projects/virtual-environments.html).
-
 <hr>
 
 ## Disclaimer

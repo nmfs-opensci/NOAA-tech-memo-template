@@ -1,5 +1,9 @@
 Type: project
+Title: NOAA-tech-memo
 Description: NOAA tech memo template. Add the packages used.
 Depends:
     here,
-    ggplot2
+    ggplot2,
+    rmarkdown,
+    knitr,
+    gt
