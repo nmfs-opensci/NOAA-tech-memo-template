@@ -45,7 +45,8 @@ book:
   repo-actions: [edit, source, issue]
   search: true
 
-bibliography: [text/references.bib]
+bibliography: 
+  - text/references.bib
 
 execute:
   echo: false
