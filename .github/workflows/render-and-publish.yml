@@ -17,6 +17,9 @@ jobs:
       - name: Install remotes; needed for next line
         run: Rscript -e 'install.packages(c("remotes"))'
 
+      - name: Install remotes; needed for next line
+        run: Rscript -e 'install.packages(c("gt"))'
+
       - name: Install packages (needed for Rmd)
         run: Rscript -e 'remotes::install_deps(quiet = TRUE, upgrade="never")'
 
