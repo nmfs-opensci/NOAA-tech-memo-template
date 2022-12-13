@@ -18,7 +18,7 @@ jobs:
         run: Rscript -e 'install.packages(c("remotes"))'
         
       - name: Install gt; no binary on cran
-        run: remotes::install_github("rstudio/gt@*release")
+        run: Rscript -e 'remotes::install_github("rstudio/gt@*release")'
 
       - name: Install packages (needed for Rmd)
         run: Rscript -e 'remotes::install_deps(quiet = TRUE, upgrade="never", build=FALSE)'
