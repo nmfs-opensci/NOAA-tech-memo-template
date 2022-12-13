@@ -2,14 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://nmfs-opensci.github.io/NOAA-tech-memo-template/index.html</loc>
-    <lastmod>2022-12-09T22:46:47.691Z</lastmod>
+    <lastmod>2022-12-13T01:27:20.712Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAA-tech-memo-template/An-example-report.docx</loc>
-    <lastmod>2022-12-09T22:46:12.047Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAA-tech-memo-template/text/Chapter1.html</loc>
+    <lastmod>2022-12-13T01:27:20.713Z</lastmod>
   </url>
   <url>
-    <loc>https://nmfs-opensci.github.io/NOAA-tech-memo-template/An-example-report.pdf</loc>
-    <lastmod>2022-12-09T22:46:47.623Z</lastmod>
+    <loc>https://nmfs-opensci.github.io/NOAA-tech-memo-template/text/conclusion.html</loc>
+    <lastmod>2022-12-13T01:27:20.714Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAA-tech-memo-template/text/references.html</loc>
+    <lastmod>2022-12-13T01:27:20.715Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAA-tech-memo-template/An-example-tech-memo.docx</loc>
+    <lastmod>2022-12-13T01:26:07.847Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nmfs-opensci.github.io/NOAA-tech-memo-template/An-example-tech-memo.pdf</loc>
+    <lastmod>2022-12-13T01:27:20.091Z</lastmod>
   </url>
 </urlset>
