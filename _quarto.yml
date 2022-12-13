@@ -51,6 +51,7 @@ bibliography:
 execute:
   echo: false
   code-overflow: wrap
+  freeze: auto
 
 format:
   docx:
