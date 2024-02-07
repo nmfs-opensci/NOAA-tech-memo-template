@@ -8,7 +8,6 @@
   open=any]{scrbook}
 
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -18,6 +17,10 @@
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -72,40 +75,44 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
 \newlength{\csllabelwidth}
 \setlength{\csllabelwidth}{3em}
-\newlength{\cslentryspacingunit} % times entry-spacing
-\setlength{\cslentryspacingunit}{\parskip}
-\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
- {% don't indent paragraphs
-  \setlength{\parindent}{0pt}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
   % turn on hanging indent if param 1 is 1
   \ifodd #1
-  \let\oldpar\par
-  \def\par{\hangindent=\cslhangindent\oldpar}
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
   \fi
   % set entry spacing
-  \setlength{\parskip}{#2\cslentryspacingunit}
- }%
- {}
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
 \usepackage{calc}
-\newcommand{\CSLBlock}[1]{#1\hfill\break}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLBlock}[1]{\hfill\break#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
-\usepackage{amsmath}
-\usepackage{booktabs}
-\usepackage{caption}
-\usepackage{longtable}
 \usepackage[default]{opensans}
 \fontseries{lc}\selectfont
 \definecolor{nmfsblue1}{HTML}{00467f}
 \definecolor{nmfsblue2}{HTML}{007eb2}
-\makeatletter
-\makeatother
 \makeatletter
 \@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
 \makeatother
@@ -145,16 +152,10 @@
 \newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
 \makeatother
 \makeatletter
+\makeatother
+\makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
-\makeatother
-\makeatletter
-\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
-\makeatother
-\makeatletter
-\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
-\makeatother
-\makeatletter
 \makeatother
 
 \usepackage{hyphenat}
@@ -176,7 +177,6 @@
 \usepackage[pagecolor=none]{pagecolor}
 
 
-
 % Set the titlepage font families
 
 
@@ -186,10 +186,6 @@
 
 
 % Set the coverpage font families
-
-
-
-
 
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
@@ -213,7 +209,7 @@
 \subtitle{The subtitle}
 \author{Jane Doe \and Eva Nováková \and Matti Meikäläinen \and Ashok
 Kumar}
-\date{1/1/23}
+\date{2023-01-01}
 
 \begin{document}
 %%%%% begin titlepage extension code
@@ -246,8 +242,7 @@ Kumar}
 \newcommand{\titlelocationbottom}{7in}
 \newcommand{\titlealign}{left}
 
-\begin{scope}
-{%
+\begin{scope}{%
 \fontsize{50}{60.0}\selectfont
 \node[anchor=north
 west, align=left, rotate=0] (Title1) at ($(current page.south west)+(\titlelocationleft,\titlelocationbottom)$)  [text width = 5in]  {\textcolor{nmfsblue1}{\nohyphens{An
@@ -302,6 +297,20 @@ Northwest Fisheries Science Center}}};
 }
 \end{scope}
 
+% Date
+\newcommand{\datelocationleft}{6in}
+\newcommand{\datelocationbottom}{2in}
+\newcommand{\datelocationalign}{left}
+
+\begin{scope}
+{%
+\fontsize{20}{24.0}\selectfont
+ \node[anchor=north west, align=left, rotate=0] (Date1) at %
+($(current page.south west)+(\datelocationleft,\datelocationbottom)$)  [text width = 2.5in]  {{\nohyphens{January
+2023}}};
+}
+\end{scope}
+
 \end{tikzpicture}
 \clearpage
 \restoregeometry
@@ -343,34 +352,32 @@ Northwest Fisheries Science Center}}};
 \newcommand{\affiliationstyle}[1]{{#1}}
 
 \newcommand{\titlepageauthorblock}{
-\authorstyle{Jane
-Doe{\textsuperscript{1}}\textsuperscript{,}{\textsuperscript{2}},  Eva
-Nováková{\textsuperscript{2}},  Matti
-Meikäläinen{\textsuperscript{3}}\textsuperscript{,}{\textsuperscript{*}} and Ashok
-Kumar{\textsuperscript{4}}\textsuperscript{,}{\textsuperscript{5}}%
-
-}}
+{\authorstyle{\nohyphens{Jane
+Doe}{\textsuperscript{1}}\textsuperscript{,}{\textsuperscript{2}},  \nohyphens{Eva
+Nováková}{\textsuperscript{2}},  \nohyphens{Matti
+Meikäläinen}{\textsuperscript{3}}\textsuperscript{,}{\textsuperscript{*}} and \nohyphens{Ashok
+Kumar}{\textsuperscript{4}}\textsuperscript{,}{\textsuperscript{5}}}}}
 
 \newcommand{\titlepageaffiliationblock}{
 \hangindent=1em
 \hangafter=1
-\affiliationstyle{
-{1}.~Northwest Fisheries Science Center, Conservation Biology
-Division,  2725 Montlake Boulevard EastSeattle, Washington 98112
-\par\hangindent=1em\hangafter=1%
-{2}.~University of Washington, School of Aquatic and Fisheries Sciences
-\par\hangindent=1em\hangafter=1%
-{3}.~University of Kemijärvi, Department of Biological and Environmental
-Science,  Kylmäniementie 79, 98120, KEMIJÄRVI, Finland
-\par\hangindent=1em\hangafter=1%
-{4}.~University of Minnesota, Department of Mathematics
-\par\hangindent=1em\hangafter=1%
-{5}.~HØnefoss Institute,  R Tradição 35, Portugal 2950-726
+{\affiliationstyle{
+{1}.~Northwest Fisheries Science Center,~Conservation Biology
+Division,~2725 Montlake Boulevard EastSeattle, Washington 98112
+\par\hangindent=1em\hangafter=1{2}.~University of Washington,~School of
+Aquatic and Fisheries Sciences
+\par\hangindent=1em\hangafter=1{3}.~University of Kemijärvi,~Department
+of Biological and Environmental Science,~Kylmäniementie 79, 98120,
+KEMIJÄRVI, Finland
+\par\hangindent=1em\hangafter=1{4}.~University of Minnesota,~Department
+of Mathematics
+\par\hangindent=1em\hangafter=1{5}.~HØnefoss Institute,~R Tradição 35,
+Portugal 2950-726
 
 
 \vspace{1\baselineskip} 
 * \textit{Correspondence:}~Matti Meikäläinen~matti@jy.fi
-}
+}}
 }
 \newcommand{\headerstyled}{%
 {}
@@ -379,7 +386,7 @@ Science,  Kylmäniementie 79, 98120, KEMIJÄRVI, Finland
 {}
 }
 \newcommand{\datestyled}{%
-{1/1/23}
+{2023-01-01}
 }
 
 
@@ -483,8 +490,7 @@ Science,  Kylmäniementie 79, 98120, KEMIJÄRVI, Finland
 \setcounter{page}{1}
 \end{frontmatter}
 
-%%%%% end titlepage extension code\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, borderline west={3pt}{0pt}{shadecolor}, enhanced, breakable, sharp corners, interior hidden, boxrule=0pt]}{\end{tcolorbox}}\fi
-
+%%%%% end titlepage extension code
 \renewcommand*\contentsname{Table of contents}
 {
 \setcounter{tocdepth}{1}
@@ -495,8 +501,7 @@ Science,  Kylmäniementie 79, 98120, KEMIJÄRVI, Finland
 \mainmatter
 \bookmarksetup{startatroot}
 
-\hypertarget{citation}{%
-\chapter*{Citation}\label{citation}}
+\chapter*{Citation}\label{citation}
 \addcontentsline{toc}{chapter}{Citation}
 
 \markboth{Citation}{Citation}
@@ -506,8 +511,11 @@ Center.
 
 \bookmarksetup{startatroot}
 
-\hypertarget{a-chapter}{%
-\chapter{A chapter}\label{a-chapter}}
+\chapter{A chapter}\label{a-chapter}
+
+\bookmarksetup{startatroot}
+
+\chapter{Columbia River Chum}\label{columbia-river-chum}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Clark (1993)
 vitae ante quis dui egestas fringilla ac vitae justo (Ansley and Davis
@@ -530,8 +538,7 @@ nisi mi, quis mollis velit ullamcorper non. Aliquam tempus fringilla
 bibendum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
 viverra nulla elementum libero mollis, quis cursus velit sagittis.
 
-\hypertarget{general-location}{%
-\section{General location}\label{general-location}}
+\section{General location}\label{general-location}
 
 Morbi iaculis eget augue eget facilisis. Etiam non orci dignissim,
 efficitur purus viverra, pellentesque neque. Aliquam ornare, magna ut
@@ -540,7 +547,9 @@ tortor.
 
 \begin{figure}
 
-{\centering \includegraphics[width=4.48in,height=\textheight]{text/../images/fig-map.png}
+\centering{
+
+\includegraphics[width=4.48in,height=\textheight]{text/../images/fig-map.png}
 
 }
 
@@ -548,10 +557,9 @@ tortor.
 non orci dignissim, efficitur purus viverra, pellentesque neque. Aliquam
 ornare, magna ut dictum mollis.}
 
-\end{figure}
+\end{figure}%
 
-\hypertarget{recent-trends}{%
-\section{Recent trends}\label{recent-trends}}
+\section{Recent trends}\label{recent-trends}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae
 ante quis dui egestas fringilla ac vitae justo. Pellentesque quis magna
@@ -575,17 +583,18 @@ viverra nulla elementum libero mollis, quis cursus velit sagittis.
 
 \begin{figure}
 
-{\centering \includegraphics{text/Chapter1_files/figure-pdf/fig-CRchum-status-1.pdf}
+\centering{
+
+\includegraphics{text/Chapter1_files/figure-pdf/fig-CRchum-status-1.pdf}
 
 }
 
 \caption{\label{fig-CRchum-status}Columbia River Chum. Log spawner count
 trends.}
 
-\end{figure}
+\end{figure}%
 
-\hypertarget{population-raw-data}{%
-\section{Population raw data}\label{population-raw-data}}
+\section{Population raw data}\label{population-raw-data}
 
 The raw data can be found in Table~\ref{tbl-CRchum-rawdata}. Nunc quis
 euismod felis. Vestibulum gravida nisi mi, quis mollis velit ullamcorper
@@ -593,10 +602,13 @@ non. Aliquam tempus fringilla bibendum. Lorem ipsum dolor sit amet,
 consectetur adipiscing elit. Fusce viverra nulla elementum libero
 mollis, quis cursus velit sagittis.
 
-\hypertarget{tbl-CRchum-rawdata}{}
-\begin{longtable}{rr}
-\caption{\label{tbl-CRchum-rawdata}Columbia River Chum. Raw Data. }\tabularnewline
+\begin{table}
 
+\caption{\label{tbl-CRchum-rawdata}Columbia River Chum. Raw Data.}
+
+\centering{
+
+\begin{longtable*}{rr}
 \toprule
 YEAR & NUMBER\_OF\_SPAWNERS \\ 
 \midrule
@@ -635,12 +647,17 @@ YEAR & NUMBER\_OF\_SPAWNERS \\
 2014 & 4792 \\ 
 2015 & 11580 \\ 
 \bottomrule
-\end{longtable}
+\end{longtable*}
+
+}
+
+\end{table}%
 
 \bookmarksetup{startatroot}
 
-\hypertarget{conclusion}{%
-\chapter{Conclusion}\label{conclusion}}
+\chapter{Conclusion}\label{conclusion}
+
+\section{First off}\label{first-off}
 
 We want to reference the Interior Columbia Upper Columbia Entiat
 population Table~\ref{tbl-CRchum-rawdata}. It is in Lorem ipsum dolor
@@ -690,26 +707,25 @@ non a felis.
 
 \bookmarksetup{startatroot}
 
-\hypertarget{references}{%
-\chapter*{References}\label{references}}
+\chapter*{References}\label{references}
 \addcontentsline{toc}{chapter}{References}
 
 \markboth{References}{References}
 
-\hypertarget{refs}{}
+\phantomsection\label{refs}
 \begin{CSLReferences}{1}{0}
-\leavevmode\vadjust pre{\hypertarget{ref-ansley1981}{}}%
+\bibitem[\citeproctext]{ref-ansley1981}
 Ansley, H. L. H., and C. D. Davis. 1981. {``Migration and Standing Stock
 of Fishes Associated with Artificial and Natural Reefs on Georgia{'}s
 Outer Continental Shelf.''} Brunswick, Georgia, USA.
 
-\leavevmode\vadjust pre{\hypertarget{ref-clark1993}{}}%
+\bibitem[\citeproctext]{ref-clark1993}
 Clark, W. G. 1993. {``The Effect of Recruitment Variability on the
 Choice of a Target Level of Spawning Biomass Per Recruit.''} In, 233246.
 Alaska Sea Grant College Program
 AK{\textendash}SG{\textendash}93{\textendash}02.
 
-\leavevmode\vadjust pre{\hypertarget{ref-collins1996}{}}%
+\bibitem[\citeproctext]{ref-collins1996}
 Collins, M. R., S. B. Van Sant, D. J. Schmidt, and G. R. Sedberry. 1996.
 {``Age Validation, Movements, and Growth Rates of Tagged Gag
 (Mycteroperca Microlepis), Black Sea Bass (Centropristis Striata) and
@@ -717,11 +733,11 @@ Red Porgy (Pagrus Pagrus).''} In, edited by F. Arrequin-Sanchez, J. L.
 Munro, M. C. Balgos, and D. Pauly, 161--65. Makati City, Philippines:
 ICLARM (International Center for Living Aquatic Resources Management).
 
-\leavevmode\vadjust pre{\hypertarget{ref-deuel1968}{}}%
+\bibitem[\citeproctext]{ref-deuel1968}
 Deuel, D. G., and J. R. Clark. 1968. {``The 1965 Salt-Water Angling
 Survey.''}
 
-\leavevmode\vadjust pre{\hypertarget{ref-hardy1978}{}}%
+\bibitem[\citeproctext]{ref-hardy1978}
 Hardy, J. D., Jr. 1978. {``Development of Fishes of the Mid-Atlantic
 Bight. Vol. III. Aphredoderidae Through Rachycentridae.''}
 
