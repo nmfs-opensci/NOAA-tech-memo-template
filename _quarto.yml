@@ -67,6 +67,7 @@ format:
     documentclass: scrbook
     classoption: ["oneside", "open=any"]
     titlepage: "plain"
+    cite-method: biblatex
 
 metadata-files:
   - _frontmatter.yml
