@@ -14,10 +14,11 @@ jobs:
       - name: Set up R (needed for Rmd)
         uses: r-lib/actions/setup-r@v2
         
+      - name: Install remotes; needed for next line
+        run: Rscript -e 'install.packages(c("remotes"))'
+        
 # uncomment if runner changed to unbuntu because the install_deps step was causing problems for gt
-#      - name: Install remotes; needed for next line
-#        run: Rscript -e 'install.packages(c("remotes"))'
-#        
+# since build=FALSE won't work since no binary for gt for linux
 #      - name: Install gt; no binary on cran
 #        run: Rscript -e 'install.packages(c("gt"))'
 
