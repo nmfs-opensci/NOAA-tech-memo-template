@@ -14,6 +14,15 @@ As you work on your project, add any packages your documents require to the DESC
 ```
 renv::dependencies()
 ```
+
+## Removing the coverpage
+
+Go into `_frontmatter.yml` and change `coverpage: true` to `coverpage: false`.
+
+## Changing the PDF
+
+All the PDF specs are in `_frontmatter.yml`. See [Quarto Titlepages documentation](https://nmfs-opensci.github.io/quarto_titlepages/) for instructions on how to customize the coverpage and the titlepage.
+
 <hr>
 
 ## Disclaimer
